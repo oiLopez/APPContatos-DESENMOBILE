@@ -7,3 +7,6 @@ data class RegistroEnvio(
 )
 
 data class MensagemResposta(val mensagem: String?)
+
+data class LoginEnvio(val email: String, val senha: String)
+data class LoginResposta(val token: String?)

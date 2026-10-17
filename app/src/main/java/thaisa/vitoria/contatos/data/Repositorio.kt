@@ -4,6 +4,8 @@ import com.google.gson.JsonParser
 import retrofit2.Response
 
 object Repositorio {
+
+    suspend fun login(dados: LoginEnvio) = ler { api.login(dados) }
     private val api get() = ApiClient.api
 
     suspend fun registrar(dados: RegistroEnvio) =
