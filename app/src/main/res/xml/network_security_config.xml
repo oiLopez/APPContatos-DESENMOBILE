@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Configuração padrão: Bloqueia HTTP para todos os outros lugares (Mais seguro) -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Libera HTTP APENAS para o IP da sua API local (Ex: Emulador ou sua máquina) -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.0.2.2</domain>
+        <!-- Se usar IP da rede local no celular físico, adicione aqui também: -->
+        <!-- <domain includeSubdomains="true">192.168.X.X</domain> -->
+    </domain-config>
+</network-security-config>
