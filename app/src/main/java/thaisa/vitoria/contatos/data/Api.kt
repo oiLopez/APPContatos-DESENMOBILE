@@ -13,6 +13,10 @@ interface Api {
     @POST("usuarios/login")
     suspend fun login(@Body dados: LoginEnvio): Response<LoginResposta>
 
+
+    @GET("contatos")
+    suspend fun listar(): Response<List<Contato>>
+
 }
 
 

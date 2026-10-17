@@ -23,7 +23,12 @@ open class OperacaoViewModel : ViewModel() {
             } catch (e: CancellationException) {
                 throw e
             } catch (e: IOException) {
-                mensagem = "Falha de conexão. Confira a API e a rede."
+                android.util.Log.e(
+                    "API_CONTATOS",
+                    "Falha na comunicação com o servidor",
+                    e
+                )
+                mensagem = "${e.javaClass.simpleName}: ${e.message}"
             } catch (e: Exception) {
                 mensagem = e.message ?: "Não foi possível concluir"
             } finally {

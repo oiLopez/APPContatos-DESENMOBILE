@@ -6,14 +6,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.*
 import thaisa.vitoria.contatos.data.Sessao
 import thaisa.vitoria.contatos.ui.CadastroUsuarioTela
-import thaisa.vitoria.contatos.ui.Formulario
+import thaisa.vitoria.contatos.ui.ListaContatosTela
 import thaisa.vitoria.contatos.ui.LoginTela
 import thaisa.vitoria.contatos.viewmodel.AuthViewModel
+import thaisa.vitoria.contatos.viewmodel.ContatosViewModel
 
 @Composable
 fun AppContatos() {
     val nav = rememberNavController()
     val auth: AuthViewModel = viewModel()
+    val contatos: ContatosViewModel = viewModel()
 
     LaunchedEffect(Sessao.token) {
         val rota = nav.currentDestination?.route
@@ -23,6 +25,8 @@ fun AppContatos() {
             }
         }
     }
+
+
     NavHost(nav, startDestination = "login") {
         composable("login") {
             LoginTela(auth,
@@ -38,10 +42,10 @@ fun AppContatos() {
             CadastroUsuarioTela(auth, voltar = { nav.popBackStack() })
         }
         composable("lista") {
-            Formulario("Sessão iniciada", false, null) {
-                Text("Login realizado com sucesso")
-                Button(onClick = { auth.sair() }) { Text("Sair") }
-            }
+            ListaContatosTela(contatos, sair = {
+                contatos.limpar()
+                auth.sair()
+            })
         }
     }
 }

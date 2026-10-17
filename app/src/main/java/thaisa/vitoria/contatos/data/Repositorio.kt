@@ -5,6 +5,7 @@ import retrofit2.Response
 
 object Repositorio {
 
+    suspend fun listar() = ler { api.listar() }
     suspend fun login(dados: LoginEnvio) = ler { api.login(dados) }
     private val api get() = ApiClient.api
 
