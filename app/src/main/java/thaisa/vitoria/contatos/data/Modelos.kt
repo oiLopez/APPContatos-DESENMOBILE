@@ -20,3 +20,20 @@ data class Contato(
     val endereco: String? = null,
     val fotoId: String? = null
 )
+
+data class ContatoEnvio(
+    val nome: String,
+    val email: String,
+    val telefone: String,
+    val endereco: String,
+    val fotoId: String? = null
+)
+
+data class ContatoCriadoResposta(
+    val mensagem: String?,
+    val contato: Contato?
+)
+
+data class UploadResposta(
+    val fileId: String?
+)
